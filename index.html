@@ -201,45 +201,49 @@
       box-shadow: 0 0 0 4px rgba(231, 47, 34, 0.2);
     }
 
-    /* HEADER SEARCH BAR STYLES */
-    .header-search {
-      position: relative;
-      width: min(340px, 100%);
+    /* SECTION SEARCH BAR STYLES (PLACED ABOVE BROAST / MENU) */
+    .section-search-container {
       display: flex;
-      align-items: center;
-      flex: 1;
-      max-width: 320px;
+      justify-content: center;
+      margin-bottom: 24px;
     }
 
-    .header-search input {
+    .section-search {
+      position: relative;
+      width: min(500px, 100%);
+      display: flex;
+      align-items: center;
+    }
+
+    .section-search input {
       width: 100%;
-      background: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.9);
       border: 1px solid var(--line-strong);
       border-radius: 999px;
-      padding: 0.6rem 2.6rem 0.6rem 1.1rem;
-      font-size: 0.85rem;
+      padding: 0.8rem 3rem 0.8rem 1.4rem;
+      font-size: 0.95rem;
       color: var(--text);
       outline: none;
-      box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
       transition: all var(--transition);
     }
 
-    .header-search input:focus {
+    .section-search input:focus {
       background: #ffffff;
       border-color: var(--primary);
       box-shadow: 0 0 0 4px rgba(231, 47, 34, 0.12);
     }
 
-    .header-search .search-icon {
+    .section-search .search-icon {
       position: absolute;
-      right: 14px;
+      right: 18px;
       color: var(--muted);
-      font-size: 0.85rem;
+      font-size: 1rem;
       pointer-events: none;
       transition: color var(--transition);
     }
 
-    .header-search input:focus + .search-icon {
+    .section-search input:focus + .search-icon {
       color: var(--primary);
     }
 
@@ -638,28 +642,6 @@
     .menu-badge.hot { color: #ffd7d2; }
     .menu-badge.popular { color: #ffe9a9; }
 
-    .menu-fave {
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      width: 40px;
-      height: 40px;
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 50%;
-      background: rgba(23,25,29,0.72);
-      color: white;
-      display: grid;
-      place-items: center;
-      cursor: pointer;
-      transition: transform var(--transition), background var(--transition);
-    }
-
-    .menu-fave.faved {
-      background: rgba(231,47,34,0.16);
-      color: #ff7f6d;
-      border-color: rgba(231,47,34,0.18);
-    }
-
     .menu-body { padding: 1.1rem 1.1rem 1.2rem; }
 
     .menu-category {
@@ -1056,6 +1038,22 @@
       gap: 18px;
       flex-wrap: wrap;
       color: var(--muted);
+    }
+
+    /* SMALLER DEVELOPER BRANDING STYLES */
+    .developer-info {
+      font-size: 0.75rem;
+      line-height: 1.4;
+      opacity: 0.85;
+    }
+
+    .developer-info p {
+      margin: 0;
+    }
+
+    .developer-info a {
+      color: var(--primary);
+      font-weight: 600;
     }
 
     .cart-panel {
@@ -1537,20 +1535,6 @@
 
       .business-status { font-size: 0.68rem; padding: 0.3rem 0.6rem; }
 
-      .header-search {
-        max-width: 130px;
-      }
-
-      .header-search input {
-        padding: 0.5rem 2.2rem 0.5rem 0.85rem;
-        font-size: 0.8rem;
-      }
-
-      .header-search .search-icon {
-        right: 10px;
-        font-size: 0.8rem;
-      }
-
       .hero-card { padding: 18px 18px 24px; }
 
       .food-plate { min-height: 360px; }
@@ -1572,7 +1556,7 @@
       <span id="bannerText">Checking restaurant hours...</span>
     </div>
 
-    <!-- TOPBAR WITH BRAND, LIVE STATUS, SEARCH BAR AND HEADER CART BUTTON -->
+    <!-- TOPBAR WITH BRAND, LIVE STATUS AND HEADER CART BUTTON -->
     <header class="topbar">
       <div class="topbar-inner">
         <div class="brand" aria-label="OTAKU">
@@ -1584,12 +1568,6 @@
         <div class="business-status" id="businessStatus">
           <span class="status-dot"></span>
           <span id="statusText">Checking...</span>
-        </div>
-
-        <!-- SEARCH BAR IN HEADER -->
-        <div class="header-search">
-          <input type="text" id="menuSearchInput" placeholder="Search menu..." />
-          <i class="fa-solid fa-magnifying-glass search-icon"></i>
         </div>
 
         <!-- HEADER CART BUTTON -->
@@ -1618,7 +1596,7 @@
           <div class="hero-visual">
             <div class="visual-wrap">        
               <div class="food-plate">
-                <img src="img/banner-img.jpg" alt="Featured food" />
+                <img src="img/banner-img.jpg" alt="Featured food" loading="lazy" decoding="async" />
               </div>
               <div class="promo-tag">
                 <small>Chef special</small>
@@ -1631,12 +1609,21 @@
       </div>
     </section>
 
+    <!-- MENU SECTION WITH SEARCH BAR PLACED RIGHT ABOVE BROAST -->
     <section class="menu" id="menu">
       <div class="container">
         <div class="section-head">
           <span class="section-kicker">What's cooking</span>
           <h2>Our delicious menu</h2>
           <div class="line"></div>
+        </div>
+
+        <!-- SEARCH BAR PLACED ABOVE BROAST SECTION -->
+        <div class="section-search-container">
+          <div class="section-search">
+            <input type="text" id="menuSearchInput" placeholder="Search menu (e.g. Broast, Pizza, Burger)..." />
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          </div>
         </div>
 
         <div class="filters" id="filters"></div>
@@ -1647,7 +1634,7 @@
     <section class="about" id="about">
       <div class="container about-grid">
         <div class="story-visual">
-          <img src="img/banner-img.jpg" alt="Restaurant story" />
+          <img src="img/banner-img.jpg" alt="Restaurant story" loading="lazy" decoding="async" />
           <div class="story-badge">
             <strong>100%</strong>
             <span>Fresh ingredients</span>
@@ -1829,7 +1816,7 @@
         <div class="footer-col">
           <h5>Get In Touch</h5>
           <div class="footer-contact">
-            <div class="item"><i class="fa-solid fa-location-dot"></i><span>Address: Taizab Mill Road, Near Khuram Chowk, Naimat Colony, Madina Town Faislabad</span></div>
+            <div class="item"><i class="fa-solid fa-location-dot"></i><span>Address: Taizab Mill Road, Near Khuram Chowk, Naimat Colony, Madina Town Faisalabad</span></div>
             <div class="item"><i class="fa-solid fa-phone"></i><span>+92-329-0099952</span></div>
             <div class="item"><i class="fa-solid fa-envelope"></i><span>Otaku12aaa@gmail.com</span></div>
             <div class="item"><i class="fa-solid fa-clock"></i><span>Mon - Sun: 10:00 AM - 3:00 AM</span></div>
@@ -1838,12 +1825,11 @@
       </div>
 
       <div class="footer-bottom">
-        <div>&copy; 2026 <b>OTAKU</b>. <div class="developer-info">
-    <p>Developer by DATA AXE</p>
-    <p><a href="tel:+923036360008">+92 303-6360008</a></p>
-</div>
-</div>
- 
+        <div>&copy; 2026 <b>OTAKU</b>.</div>
+        <div class="developer-info">
+          <p>Developer by DATA AXE</p>
+          <p><a href="tel:+923036360008">+92 303-6360008</a></p>
+        </div>
       </div>
     </div>
   </footer>
@@ -1895,14 +1881,15 @@
       "Sandwich",
       "Pasta",
       "Wrap",
-  "Appetizer",
+      "Appetizer",
       "Spin Roll",
       "Wings",
       "Hot Coffee",
       "Cold Cofee",
       "Mocktail",
       "Soda",
-      "Shakes"
+      "Shakes",
+      "Ice Cream"
     ];
 
     const menuData = [
@@ -2108,19 +2095,33 @@
       },
       {
         id: "square-pizza",
-        title: "1 Meter Square Pizza",
+        title: "Square Pizza",
         category: "Square Pizza",
         badge: "Mega Size",
         badgeClass: "hot",
         image: "img/menu/5.jpg",
         short: "Click to view options & order",
-        description: "Massive 1-meter square pizza loaded with your choice of any flavor, rich sauce, and premium melted mozzarella cheese.",
-        firstPrice: 3500,
+        description: "Delicious square crust loaded with signature toppings, rich sauce, and melted mozzarella cheese.",
+        firstPrice: 1100,
         items: [
           {
             label: "1 Meter Square Pizza (Any 3 Flavor)",
             detail: "Massive 1-meter square pizza loaded with your choice of any 3 flavor, rich sauce, and premium melted mozzarella cheese.",
             price: 3499
+          },
+          {
+            label: "1 Meter Square Pizza (Special Crust)",
+            detail: "Massive 1-meter square pizza with double crust and extra loaded toppings.",
+            price: 3899
+          },
+          {
+            label: "Square Pizza",
+            detail: "Signature square pizza crafted in Small, Medium and Large sizes with your favorite flavors.",
+            sizes: [
+              { size: "S", price: 650 },
+              { size: "M", price: 1250 },
+              { size: "L", price: 1750 }
+            ]
           }
         ]
       },
@@ -2251,7 +2252,7 @@
         badge: "Juicy",
         badgeClass: "Creamy",
         image: "img/menu/20.jpg",
-        short: "Click to view flavors )",
+        short: "Click to view flavors",
         description: "Crisp golden roll packed with sizzling chicken, herbs, rich pizza sauce, and an explosive pull of melted cheese. A total game-changer",
         firstPrice: 450,
         items: [
@@ -2269,7 +2270,7 @@
         badge: "Creamy",
         badgeClass: "hot",
         image: "img/menu/17.jpg",
-        short: "Click to view flavors (5 Pcs / 10 Pcs)",
+        short: "Click to view flavors",
         description: "Rich white sauce pasta loaded with melted cheese, juicy chicken, capsicum, mushroom / sweet corn, and black olives",
         firstPrice: 450,
         items: [
@@ -2308,7 +2309,7 @@
         badge: "Fresh Brew",
         badgeClass: "hot",
         image: "img/menu/11.jpg",
-        short: "Click to view Hot & Cold Coffee items",
+        short: "Click to view Hot Coffee items",
         description: "Freshly roasted premium coffee beans blended with steaming hot milk and a velvety layer of microfoam. Bold, comforting, and irresistibly smooth",
         firstPrice: 650,
         items: [
@@ -2319,13 +2320,13 @@
         ]
       },
       {
-        id: "cold cofee",
+        id: "cold-cofee",
         title: "Cold Coffee",
         category: "Cold Cofee",
-        badge: "Fresh Brew",
-        badgeClass: "Chill Brew",
+        badge: "Chill Brew",
+        badgeClass: "popular",
         image: "img/menu/16.jpg",
-        short: "Click to view Hot & Cold Coffee items",
+        short: "Click to view Cold Coffee items",
         description: "Smooth, thick, and served ice-cold. A rich blend whipped to icy perfection for an instant energy kick",
         firstPrice: 900,
         items: [
@@ -2333,8 +2334,7 @@
           { label: "Cold Coffee", detail: "Espresso blend with silky steamed milk and subtle foam", price: 900 },
           { label: "Caramid", detail: "Steamed espresso infused with rich buttery caramid drizzle", price: 950 },
           { label: "Chocolate", detail: "Equal parts espresso, steamed milk, and rich thick milk foam", price: 950 },
-          { label: "Latte", detail: "Chilled espresso blended with cold milk & sweet vanilla bean glaze", price: 900 },
-          
+          { label: "Latte", detail: "Chilled espresso blended with cold milk & sweet vanilla bean glaze", price: 900 }
         ]
       },
       {
@@ -2344,14 +2344,13 @@
         badge: "Refreshing",
         badgeClass: "hot",
         image: "img/menu/12.jpg",
-        short: "Click to view mocktail drinks",
+        short: "Click to view soda drinks",
         description: "Pure fizzy bliss in every sip! Super chilled, extra refreshing, and made to lift your mood",
         firstPrice: 320,
         items: [
           { label: "Peach", detail: "Sparkling soda infused with sweet flavored syrup over crushed ice", price: 700 },
           { label: "Blue Lagoon", detail: "Blue curacao syrup blended with lemon juice & fizzy soda", price: 700 },
-          { label: "Lemon", detail: "Zesty fresh mint lemon cooler with sparkling ice soda", price: 700 },
-          
+          { label: "Lemon", detail: "Zesty fresh mint lemon cooler with sparkling ice soda", price: 700 }
         ]
       },
       {
@@ -2387,6 +2386,23 @@
           { label: "Oreo Shake", detail: "Blended crunchy Oreo cookies with dark chocolate drizzle", price: 850 },
           { label: "Chocolate Shake", detail: "Indulgent cocoa chocolate blended thick shake topped with fudge", price: 850 },
           { label: "Otaku Special Shake", detail: "Signature house blend loaded with brown chocolate, nuts & premium scoop", price: 850 }
+        ]
+      },
+      {
+        id: "ice-cream",
+        title: "Indulgent Ice Cream",
+        category: "Ice Cream",
+        badge: "Cold Delight",
+        badgeClass: "popular",
+        image: "img/menu/13.jpg",
+        short: "Click to view scoops & flavors",
+        description: "Rich, creamy, and chilled artisanal ice creams served in classic scoops and sundaes.",
+        firstPrice: 200,
+        items: [
+          { label: "Vanilla Scoop", detail: "Classic rich vanilla bean scoop", price: 200 },
+          { label: "Chocolate Scoop", detail: "Deep dark chocolate indulgence", price: 220 },
+          { label: "Kulfa Delight", detail: "Traditional rich kulfa with nuts and syrup", price: 250 },
+          { label: "Otaku Special Sundae", detail: "Multi-flavor scoops topped with hot fudge, nuts & wafer", price: 450 }
         ]
       }
     ];
@@ -2523,9 +2539,8 @@
       menuGrid.innerHTML = products.map(product => `
         <article class="menu-card" tabindex="0" data-id="${product.id}" aria-label="${product.title}">
           <div class="menu-image">
-            <img src="${product.image}" alt="${product.title}" />
+            <img src="${product.image}" alt="${product.title}" loading="lazy" decoding="async" />
             <div class="menu-badge ${product.badgeClass}">${product.badge}</div>
-            <button class="menu-fave" type="button" aria-label="Add to favorite"><i class="fa-regular fa-heart"></i></button>
           </div>
 
           <div class="menu-body">
@@ -2546,17 +2561,7 @@
       `).join("");
 
       menuGrid.querySelectorAll(".menu-card").forEach(card => {
-        card.addEventListener("click", (event) => {
-          if (event.target.closest(".menu-fave")) {
-            event.stopPropagation();
-            const btn = event.target.closest(".menu-fave");
-            btn.classList.toggle("faved");
-            const icon = btn.querySelector("i");
-            icon.classList.toggle("fa-regular");
-            icon.classList.toggle("fa-solid");
-            return;
-          }
-
+        card.addEventListener("click", () => {
           const product = menuData.find(item => item.id === card.dataset.id);
           if (product) openDrawer(product);
         });
@@ -2571,13 +2576,10 @@
       });
     }
 
+    // SECTION SEARCH BAR REAL-TIME INPUT EVENT FIX
     menuSearchInput.addEventListener("input", (e) => {
       state.searchQuery = e.target.value;
       renderSkeletonAndMenu();
-
-      if (e.target.value.trim().length === 1) {
-        document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
-      }
     });
 
     function openDrawer(product) {
@@ -2657,7 +2659,7 @@
 
         <div class="drawer-body">
           <div class="drawer-image-wrap">
-            <img src="${product.image}" alt="${product.title}" />
+            <img src="${product.image}" alt="${product.title}" loading="lazy" decoding="async" />
           </div>
 
           <div class="drawer-info">
@@ -2757,7 +2759,6 @@
       subtotalValue.textContent = money(subtotal);
 
       cartList.innerHTML = state.cart.map((item, index) => {
-        // Fix duplicate name display in cart
         let detailsText = "";
         if (item.name && item.size && item.name !== item.size) {
           detailsText = `${item.name} • Size: ${item.size}`;
